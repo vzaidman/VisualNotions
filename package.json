@@ -4,7 +4,8 @@
   "description": "visualnotions",
   "main": "index.js",
   "scripts": {
-    "start": "cd src && nodemon src/index.js --ext js,json,hbs,css"
+    "start": "cd src && nodemon --ext js,json,hbs,css,scss -x \"npm run build-css && node index.js\" --ignore \"src/views/**/*.css\"",
+    "build-css": "npx node-sass src/views --output src/views"
   },
   "author": "Vitali Zaidman (vzaidman@gmail.com)",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "express-handlebars": "^6.0.6"
   },
   "devDependencies": {
+    "node-sass": "^7.0.3",
     "nodemon": "^2.0.20"
   }
 }

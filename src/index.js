@@ -39,8 +39,7 @@ app.use(express.static('public'));
 */
 const routes = [];
 
-const convertFSToName = f => f
-  .replace('.hbs', '')
+const convertFolderNameToName = f => f
   .split('_')
   .map(p => p[0].toUpperCase() + p.slice(1))
   .join(' ');
@@ -51,17 +50,18 @@ fs.readdirSync('./views').forEach(sectionFolderName => {
     }
 
     const section = {
-      name: convertFSToName(sectionFolderName),
+      name: convertFolderNameToName(sectionFolderName),
       folderName: sectionFolderName,
       routeName: sectionFolderName,
       pages: []
     };
 
-    fs.readdirSync(`./views/${sectionFolderName}`).forEach(pageFileName => {
+    fs.readdirSync(`./views/${sectionFolderName}`).forEach(pageFolderName => {
         section.pages.push({
-          fileName: pageFileName,
-          routeName: pageFileName.replace('.hbs', ''),
-          name: convertFSToName(pageFileName)
+          fileName: `${pageFolderName}.hbs`,
+          folderName: pageFolderName,
+          routeName: pageFolderName,
+          name: convertFolderNameToName(pageFolderName)
         });
     });
 
@@ -71,7 +71,7 @@ fs.readdirSync('./views').forEach(sectionFolderName => {
 routes.forEach(section => {
     section.pages.forEach(page => {
         app.get(`/${section.routeName}/${page.routeName}/`, (req, res) => {
-            res.render(`${section.folderName}/${page.fileName}`, {routes, title: `${page.name} | VisualNotions.com`});
+            res.render(`${section.folderName}/${page.folderName}/${page.fileName}`, {routes, title: `${page.name} | VisualNotions.com`});
         });        
     })
 })
