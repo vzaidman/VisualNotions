@@ -1,0 +1,60 @@
+
+html, body, #root {
+    width: 100%;
+    overflow: hidden;
+}
+
+#root {
+    height: 100%;
+    display: flex;
+    background-color: aliceblue;
+}
+
+#left-panel {
+    height: 100%;
+    width: 13em;
+}
+
+#route-content {
+    height: 100%;
+    flex: 1;
+    padding: 0.5em;
+}
+
+#route-content-inner {
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+}
+
+#logo {
+    color: black;
+    padding: 0.5em;
+    margin: 0.5em;
+    border: 1px solid black;
+    text-align: center;
+}
+
+#nav {
+    margin-top: 1em;
+    padding: 0.5em;
+    margin: 0.5em;
+    border: 1px solid black;
+}
+
+.route {
+    margin-top: 1em;
+}
+
+.route:first-of-type {
+    margin-top: 0;
+}
+
+.route-name {
+    font-weight: bolder;
+}
+
+.route-page-link {
+    margin-left: 0.5em;
+    text-decoration: underline;
+}
