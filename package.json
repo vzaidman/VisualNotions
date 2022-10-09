@@ -4,10 +4,15 @@
   "description": "visualnotions",
   "main": "index.js",
   "scripts": {
-    "watch": "concurrently \"npm:watch:server\" \"npm:watch:scss\"",
-    "watch:server": "nodemon --ext js,json,hbs -x \"npm start\"",
-    "watch:scss": "node-sass -w src/views --output src/views",
-    "start": "cd src && node index.js"
+    "build": "concurrently \"npm:build:scss\"",
+    "start": "cross-env NODE_ENV=production npm run run:server",
+
+    "watch": "cross-env NODE_ENV=development concurrently \"npm:watch:server\" \"npm:watch:scss\"",
+    "watch:server": "nodemon --ext js -x \"npm run run:server\"",
+    "watch:scss": "npm run build:scss -- -w",
+    
+    "run:server": "cd src && node index.js",
+    "build:scss": "node-sass src/views --output src/views"
   },
   "author": "Vitali Zaidman (vzaidman@gmail.com)",
   "license": "ISC",
@@ -16,6 +21,9 @@
     "express-handlebars": "^6.0.6"
   },
   "devDependencies": {
+    "concurrently": "^7.4.0",
+    "cross-env": "^7.0.3",
+    "livereload": "^0.9.3",
     "node-sass": "^7.0.3",
     "nodemon": "^2.0.20"
   }

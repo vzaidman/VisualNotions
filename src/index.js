@@ -2,6 +2,16 @@ const express = require('express');
 const handlebars = require('express-handlebars').engine;
 const fs = require('fs');
 
+const isDev = process.env.NODE_ENV === 'development';
+
+if (isDev) {
+  const livereload = require("livereload");
+  const liveReloadServer = livereload.createServer({
+    extraExts: ['hbs']
+  });
+  liveReloadServer.watch(__dirname);
+}
+
 const app = express();
 const port = 3000;
 
