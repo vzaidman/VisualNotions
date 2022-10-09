@@ -2,15 +2,13 @@
   "name": "visualnotions",
   "version": "1.0.0",
   "description": "visualnotions",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "concurrently \"npm:build:scss\"",
     "start": "cross-env NODE_ENV=production npm run run:server",
-
     "watch": "cross-env NODE_ENV=development concurrently \"npm:watch:server\" \"npm:watch:scss\"",
-    "watch:server": "nodemon --ext js -x \"npm run run:server\"",
+    "watch:server": "nodemon --watch src/index.js --ext js -x \"npm run run:server\"",
     "watch:scss": "npm run build:scss -- -w",
-    
     "run:server": "cd src && node index.js",
     "build:scss": "node-sass src/views --output src/views"
   },
@@ -18,7 +16,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.1",
-    "express-handlebars": "^6.0.6"
+    "express-handlebars": "^6.0.6",
+    "handlebars": "^4.7.7"
   },
   "devDependencies": {
     "concurrently": "^7.4.0",

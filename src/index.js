@@ -1,8 +1,12 @@
 const express = require('express');
-const handlebars = require('express-handlebars').engine;
+const HandlebarsExpress = require('express-handlebars');
 const fs = require('fs');
+const path = require('path');
 
 const isDev = process.env.NODE_ENV === 'development';
+
+const app = express();
+const port = 3000;
 
 if (isDev) {
   const livereload = require("livereload");
@@ -10,17 +14,32 @@ if (isDev) {
     extraExts: ['hbs']
   });
   liveReloadServer.watch(__dirname);
+} else {
+  app.enable('view cache');
 }
 
-const app = express();
-const port = 3000;
-
 app.set('view engine', 'hbs');
-app.engine('hbs', handlebars({
-    layoutsDir: __dirname + '/layouts',
-    defaultLayout: 'main',
-    viewsDir: __dirname + '/views',
-    extname: 'hbs',
+app.engine('hbs', HandlebarsExpress.engine({
+  layoutsDir: __dirname + '/layouts',
+  defaultLayout: 'main',
+  viewsDir: __dirname + '/views',
+  extname: 'hbs',
+  helpers: {
+    'livereload-if-needed': function(){
+      if (!isDev) {
+        return '';
+      }
+
+      return `<script>document.write('<script src="http://'+(location.host || 'localhost').split(':')[0]+':35729/livereload.js?snipver=1"></' +'script>')</script>`
+    },
+    imp: function(ext, config){
+      const filePath = path.normalize(`${__dirname}/views/${config.data.root.route}/${config.data.root.pageSlag}.${ext}`);
+      if(!fs.existsSync(filePath)) {
+        return '';
+      }
+      return fs.readFileSync(filePath);
+    },
+  }
 }));
 
 app.use(express.static('public'));
@@ -29,18 +48,15 @@ app.use(express.static('public'));
   [
     {
       name: 'Applied Philosophy',
-      folderName: 'applied_philosophy',
-      routeName: 'applied_philosophy',
+      slag: 'applied_philosophy',
       pages: [
         {
           name: 'Baruch Spinoza',
-          fileName: 'baruch_spinoza.hbs',
-          routeName: 'baruch_spinoza',
+          slag: 'baruch_spinoza',
         },
         {
           name: 'Friedrich Nietzsche',
-          fileName: 'friedrich_nietzsche.hbs'
-          routeName: 'friedrich_nietzsche'
+          slag: 'friedrich_nietzsche'
         }
       ]
     },
@@ -61,33 +77,50 @@ fs.readdirSync('./views').forEach(sectionFolderName => {
 
     const section = {
       name: convertFolderNameToName(sectionFolderName),
-      folderName: sectionFolderName,
-      routeName: sectionFolderName,
-      pages: []
+      slag: sectionFolderName,
+      pages: [],
     };
 
     fs.readdirSync(`./views/${sectionFolderName}`).forEach(pageFolderName => {
         section.pages.push({
-          fileName: `${pageFolderName}.hbs`,
-          folderName: pageFolderName,
-          routeName: pageFolderName,
-          name: convertFolderNameToName(pageFolderName)
+          name: convertFolderNameToName(pageFolderName),
+          slag: pageFolderName,
         });
     });
 
     routes.push(section);
 });
 
+const getRenderProps = ({routes, route, pageName, pageSlag}) => {
+  return {
+    routes,
+    route,
+    pageTitle: `${pageName} | VisualNotions.com`,
+    pageSlag,
+  }
+};
+
 routes.forEach(section => {
     section.pages.forEach(page => {
-        app.get(`/${section.routeName}/${page.routeName}/`, (req, res) => {
-            res.render(`${section.folderName}/${page.folderName}/${page.fileName}`, {routes, title: `${page.name} | VisualNotions.com`});
+      const route = `${section.slag}/${page.slag}`;
+      app.get(`/${route}`, (req, res) => {
+            res.render(path.normalize(`${route}/${page.slag}.hbs`), getRenderProps({
+              routes,
+              route,
+              pageName: page.name,
+              pageSlag: page.slag,
+            }));
         });        
     })
 })
 
 app.get('/', (req, res) => {
-    res.render('home.hbs', {routes, title: 'Home | VisualNotions.com'});
+    res.render('home.hbs', {
+      routes,
+      route: '/',
+      pageName: 'Home',
+      pageSlag: 'home',
+    });
 }); 
 
 app.listen(port, () => console.log(`App listening to port ${port}`));

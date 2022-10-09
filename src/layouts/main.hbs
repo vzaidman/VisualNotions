@@ -1,13 +1,13 @@
 <html lang="en">
   <head>
-    <title>{{title}}</title>
+    <title>{{pageTitle}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="stylesheet" type="text/css" href="/css-reset.css" />
     <link rel="stylesheet" type="text/css" href="/style.css" />
-    <script>
-      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
-      ':35729/livereload.js?snipver=1"></' + 'script>')
-    </script>
+    {{{livereload-if-needed}}}
+    <style>
+      {{{imp "css"}}}
+    </style>
   </head>
   <body>
     <div id="root">
@@ -19,7 +19,7 @@
             <a class="route-name">{{name}}</a>
             <ul>
             {{#each pages}}
-              <li><a class="route-page-link" href="/{{../routeName}}/{{this.routeName}}">{{this.name}}</a></li>
+              <li><a class="route-page-link" href="/{{../slag}}/{{this.slag}}">{{this.name}}</a></li>
             {{/each}}
             </ul>
           </li>
@@ -32,5 +32,8 @@
         </div>
       </div>
     </div>
+    <script>
+      {{{imp "js"}}}
+    </script>
   </body>
 </html>
