@@ -21,25 +21,58 @@
 
 #attributes {
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 50%;
   top: 0;
   height: 0;
-  display: flex;
-  align-items: stretch;
-  justify-content: space-around;
-  flex-direction: row;
-  align-content: center;
+  width: 0;
+  overflow: visible;
 }
 
 .attribute {
-  height: calc(100vh - 2em);
-  width: 1em;
+  position: absolute;
+  top: 0.1em;
+  height: calc(100vh - 4em);
+  width: 0.5em;
+  transform-origin: top center;
   background-color: black;
 }
 
-.attributes-caption {
-  position: absolute;
-  left: 100%;
-  top: 100%;
+@for $i from 1 through 5 {
+  .attribute:nth-of-type(#{$i}) {
+    transform: rotate(45deg);
+    left: -2em * $i + 5.25em;
+  }
+  .attribute:nth-of-type(#{$i + 5}) {
+    transform: rotate(-45deg);
+    right: -2em * $i + 5.25em;
+  }
 }
+
+.attributes-caption {
+  font-size: 1.5em;
+  position: absolute;
+  top: 5.5em;
+  left: -10em;
+  background-color: var(--main-background);
+  padding: 0.5em;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.attributes-caption:nth-of-type(2) {
+  left: unset;
+  right: -10em;
+}
+
+#substance-caption {
+  font-size: 2em;
+  position: absolute;
+  left: 50%;
+  top: 1em;
+  transform: translate(-50%, -50%);
+  background-color: var(--main-background);
+  padding: 0.75em 1.25em;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+

@@ -11,7 +11,7 @@ const port = 3000;
 if (isDev) {
   const livereload = require("livereload");
   const liveReloadServer = livereload.createServer({
-    extraExts: ['hbs']
+    extraExts: ['hbs', 'scss']
   });
   liveReloadServer.watch(__dirname);
 } else {
