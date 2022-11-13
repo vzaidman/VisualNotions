@@ -8,18 +8,19 @@
 
 #god-caption {
   position: absolute;
-  top: calc(50% - 0.5em);
-  left: calc(50% - 1.2em);
-  font-size: 4em; }
+  top: calc(50% - 25px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px; }
 
 #spinoza-root:hover #god {
   z-index: 100; }
 
 #substance-caption {
-  font-size: 2em;
+  font-size: 16px;
   position: absolute;
   left: 50%;
-  top: 1em;
+  top: 20px;
   transform: translate(-50%, -50%);
   background-color: var(--main-background);
   padding: 0.75em 1.25em;
@@ -36,94 +37,131 @@
 
 #attributes .attribute {
   position: absolute;
-  top: 0.1em;
-  height: calc(50vh - 4em);
-  width: 0.5em;
+  top: 0;
+  height: 220px;
+  width: 5px;
   transform-origin: top center;
   background-color: black; }
 
 #attributes .attribute:nth-of-type(1) {
-  transform: rotate(55deg);
-  left: 3.25em; }
-
-#attributes .attribute:nth-of-type(5) {
-  transform: rotate(-55deg);
-  right: 3.25em; }
-
-#attributes .attribute:nth-of-type(2) {
-  transform: rotate(55deg);
-  left: 1.25em; }
+  transform: rotate(35deg); }
 
 #attributes .attribute:nth-of-type(6) {
-  transform: rotate(-55deg);
-  right: 1.25em; }
+  transform: rotate(-35deg); }
 
-#attributes .attribute:nth-of-type(3) {
-  transform: rotate(55deg);
-  left: -0.75em; }
+#attributes .attribute:nth-of-type(2) {
+  transform: rotate(50deg); }
 
 #attributes .attribute:nth-of-type(7) {
-  transform: rotate(-55deg);
-  right: -0.75em; }
+  transform: rotate(-50deg); }
 
-#attributes .attribute:nth-of-type(4) {
-  transform: rotate(55deg);
-  left: -2.75em; }
+#attributes .attribute:nth-of-type(3) {
+  transform: rotate(65deg); }
 
 #attributes .attribute:nth-of-type(8) {
-  transform: rotate(-55deg);
-  right: -2.75em; }
+  transform: rotate(-65deg); }
+
+#attributes .attribute:nth-of-type(4) {
+  transform: rotate(80deg); }
+
+#attributes .attribute:nth-of-type(9) {
+  transform: rotate(-80deg); }
+
+#attributes .attribute:nth-of-type(5) {
+  transform: rotate(95deg); }
+
+#attributes .attribute:nth-of-type(10) {
+  transform: rotate(-95deg); }
 
 #attributes .attributes-caption {
-  font-size: 1.5em;
+  font-size: 16px;
   position: absolute;
-  top: 5.5em;
-  left: -10em;
+  top: 40px;
+  left: 40px;
   background-color: var(--main-background);
-  padding: 0.5em;
+  padding: 8px;
   border-radius: 50%;
   border: 1px solid black; }
 
-#attributes .attributes-caption:nth-of-type(2) {
+#attributes .attributes-caption.second {
   left: unset;
-  right: -10em; }
+  right: 40px; }
+
+#attributes .unknown-attributes-caption {
+  font-size: 8px;
+  position: absolute;
+  top: 60px;
+  left: 130px;
+  background-color: var(--main-background);
+  padding: 6px;
+  border-radius: 50%;
+  border: 1px solid black;
+  text-align: center; }
+
+#attributes .unknown-attributes-caption.second {
+  left: unset;
+  right: 130px; }
 
 #modes {
   position: absolute;
   left: 50%;
-  top: 25.5%;
+  top: 140px;
   height: 0;
   width: 0;
   overflow: visible; }
 
-#modes .mode {
+#modes .unknown-mode {
   position: absolute;
   top: 0;
-  height: calc(50vh - 4em);
-  width: 0.6em;
+  height: 100px;
+  width: 0;
   transform-origin: top center;
-  background-color: black; }
+  border-left: 2px black dashed;
+  left: 170px; }
 
-#modes .mode:nth-of-type(1) {
-  left: -28.05em; }
+#modes .unknown-mode.second {
+  left: unset;
+  right: 164px; }
 
-#modes .mode:nth-of-type(5) {
-  right: -28.05em; }
+#modes .unknown-modes-caption {
+  font-size: 8px;
+  position: absolute;
+  top: 20px;
+  left: 132px;
+  background-color: var(--main-background);
+  padding: 6px;
+  border-radius: 50%;
+  border: 1px solid black;
+  text-align: center; }
 
-#modes .mode:nth-of-type(2) {
-  left: -26.05em; }
+#modes .unknown-modes-caption.second {
+  left: unset;
+  right: 132px; }
 
-#modes .mode:nth-of-type(6) {
-  right: -26.05em; }
+#modes .mode {
+  position: absolute;
+  top: 40px;
+  height: 280px;
+  width: 2px;
+  transform-origin: top center;
+  background-color: black;
+  left: 127px; }
 
-#modes .mode:nth-of-type(3) {
-  left: -24.05em; }
+#modes .mode.second {
+  left: unset;
+  right: 123px; }
 
-#modes .mode:nth-of-type(7) {
-  right: -24.05em; }
+#modes .modes-caption {
+  font-size: 8px;
+  position: absolute;
+  top: 160px;
+  left: 132px;
+  background-color: var(--main-background);
+  padding: 6px;
+  border-radius: 50%;
+  border: 1px solid black;
+  text-align: center; }
 
-#modes .mode:nth-of-type(4) {
-  left: -22.05em; }
-
-#modes .mode:nth-of-type(8) {
-  right: -22.05em; }
+#modes .modes-caption.second {
+  left: unset;
+  right: 132px; }

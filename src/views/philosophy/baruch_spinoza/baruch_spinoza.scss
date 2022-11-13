@@ -10,9 +10,10 @@
 
 #god-caption {
   position: absolute;
-  top: calc(50% - 0.5em);
-  left: calc(50% - 1.2em);
-  font-size: 4em;
+  top: calc(50% - 25px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
 }
 
 #spinoza-root:hover #god {
@@ -20,10 +21,10 @@
 }
 
 #substance-caption {
-  font-size: 2em;
+  font-size: 16px;
   position: absolute;
   left: 50%;
-  top: 1em;
+  top: 20px;
   transform: translate(-50%, -50%);
   background-color: var(--main-background);
   padding: 0.75em 1.25em;
@@ -41,66 +42,128 @@
 
   .attribute {
     position: absolute;
-    top: 0.1em;
-    height: calc(50vh - 4em);
-    width: 0.5em;
+    top: 0;
+    height: 220px;
+    width: 5px;
     transform-origin: top center;
     background-color: black;
   }
   
-  @for $i from 1 through 4 {
+  @for $i from 1 through 5 {
     .attribute:nth-of-type(#{$i}) {
-      transform: rotate(55deg);
-      left: 5.25em + (-2em * $i);
+      transform: rotate(20deg + (15deg * $i));
+      //left: 70px + (-40px * $i);
     }
-    .attribute:nth-of-type(#{$i + 4}) {
-      transform: rotate(-55deg);
-      right: 5.25em + (-2em * $i);
+    .attribute:nth-of-type(#{$i + 5}) {
+      transform: rotate(-20deg - (15deg * $i));
+      //right: 70px + (-40px * $i);
     }
   }
   
   .attributes-caption {
-    font-size: 1.5em;
+    font-size: 16px;
     position: absolute;
-    top: 5.5em;
-    left: -10em;
+    top: 40px;
+    left: 40px;
     background-color: var(--main-background);
-    padding: 0.5em;
+    padding: 8px;
     border-radius: 50%;
     border: 1px solid black;
   }
   
-  .attributes-caption:nth-of-type(2) {
+  .attributes-caption.second {
     left: unset;
-    right: -10em;
+    right: 40px;
+  }
+
+  .unknown-attributes-caption {
+    font-size: 8px;
+    position: absolute;
+    top: 60px;
+    left: 130px;
+    background-color: var(--main-background);
+    padding: 6px;
+    border-radius: 50%;
+    border: 1px solid black;
+    text-align: center;
+  }
+
+  .unknown-attributes-caption.second {
+    left: unset;
+    right: 130px;
   }
 }
 
 #modes {
   position: absolute;
   left: 50%;
-  top: 25.5%;
+  top: 140px;
   height: 0;
   width: 0;
   overflow: visible;
 
-  .mode {
+  .unknown-mode {
     position: absolute;
     top: 0;
-    height: calc(50vh - 4em);
-    width: 0.6em;
+    height: 100px;
+    width: 0;
     transform-origin: top center;
-    background-color: black;
+    border-left: 2px black dashed;
+    left: 170px;
   }
 
-  @for $i from 1 through 4 {
-    .mode:nth-of-type(#{$i}) {
-      left: -30.05em + (2em * $i);
-    }
-    .mode:nth-of-type(#{$i + 4}) {
-      right: -30.05em + (2em * $i);
-    }
+  .unknown-mode.second {
+    left: unset;
+    right: 164px;
   }
-  
+
+  .unknown-modes-caption {
+    font-size: 8px;
+    position: absolute;
+    top: 20px;
+    left: 132px;
+    background-color: var(--main-background);
+    padding: 6px;
+    border-radius: 50%;
+    border: 1px solid black;
+    text-align: center;
+  }
+
+  .unknown-modes-caption.second {
+    left: unset;
+    right: 132px;
+  }
+
+  .mode {
+    position: absolute;
+    top: 40px;
+    height: 280px;
+    width: 2px;
+    transform-origin: top center;
+    background-color: black;
+    left: 127px;
+  }
+
+  .mode.second {
+    left: unset;
+    right: 123px;
+  }
+
+  .modes-caption {
+    font-size: 8px;
+    position: absolute;
+    top: 160px;
+    left: 132px;
+    background-color: var(--main-background);
+    padding: 6px;
+    border-radius: 50%;
+    border: 1px solid black;
+    text-align: center;
+  }
+
+  .modes-caption.second {
+    left: unset;
+    right: 132px;
+  }
 }
 

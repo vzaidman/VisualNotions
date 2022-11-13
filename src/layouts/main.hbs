@@ -33,6 +33,29 @@
       </div>
     </div>
     <script>
+      function recalculateAndSetContentInnerRatio() {
+        const elem = document.getElementById('route-content-inner');
+
+        if (window.innerWidth < 850) {
+          elem.style.scale = 1;
+          return;
+        }
+
+        const ratioWidth = window.innerWidth / elem.clientWidth;
+        const ratioHeight = window.innerHeight / elem.clientHeight;
+
+        const scale = Math.min(ratioWidth, ratioHeight) - 0.1;
+
+        if (scale > 1) {
+          elem.style.scale = scale;
+        }
+      }
+      document.addEventListener('DOMContentLoaded', () => {
+        recalculateAndSetContentInnerRatio();
+        window.addEventListener('resize', recalculateAndSetContentInnerRatio);
+      });
+    </script>
+    <script>
       {{{imp "js"}}}
     </script>
   </body>

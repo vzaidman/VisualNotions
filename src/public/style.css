@@ -4,8 +4,11 @@
 }
 
 html, body, #root {
-    width: 100%;
     overflow: hidden;
+}
+
+html, body, #root {
+    width: 100%;
 }
 
 #root {
@@ -15,8 +18,8 @@ html, body, #root {
 }
 
 #left-panel {
-    height: 100%;
-    width: 13em; 
+    width: 250px;
+    margin-left: 0.5em;
 }
 
 #route-content {
@@ -24,18 +27,45 @@ html, body, #root {
     flex: 1;
     padding: 0.5em;
     padding-left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 #route-content-inner {
-    height: 100%;
-    width: 100%;
+    height: 600px;
+    width: 350px;
     border: 1px solid black;
+    transform-origin: top center;
+}
+
+@media (max-width: 850px) {
+    #root {
+        flex-wrap: wrap;
+        overflow: auto;
+        padding: 0.5em;
+    }
+    #left-panel {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        order: 2;
+    }
+    #route-content{
+        width: 100%;
+        padding: 0;
+        height: auto;
+        border: 1px solid black;
+    }
+    #route-content-inner {
+        border: none;
+    }
 }
 
 #logo {
     color: black;
     padding: 0.5em;
-    margin: 0.5em;
+    margin: 0.5em 0;
     border: 1px solid black;
     text-align: center;
 }
@@ -43,7 +73,7 @@ html, body, #root {
 #nav {
     margin-top: 1em;
     padding: 0.5em;
-    margin: 0.5em;
+    margin: 0.5em 0;
     border: 1px solid black;
 }
 
