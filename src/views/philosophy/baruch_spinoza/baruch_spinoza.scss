@@ -19,51 +19,6 @@
   z-index: 100;
 }
 
-#attributes {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  height: 0;
-  width: 0;
-  overflow: visible;
-}
-
-.attribute {
-  position: absolute;
-  top: 0.1em;
-  height: calc(100vh - 4em);
-  width: 0.5em;
-  transform-origin: top center;
-  background-color: black;
-}
-
-@for $i from 1 through 5 {
-  .attribute:nth-of-type(#{$i}) {
-    transform: rotate(45deg);
-    left: -2em * $i + 5.25em;
-  }
-  .attribute:nth-of-type(#{$i + 5}) {
-    transform: rotate(-45deg);
-    right: -2em * $i + 5.25em;
-  }
-}
-
-.attributes-caption {
-  font-size: 1.5em;
-  position: absolute;
-  top: 5.5em;
-  left: -10em;
-  background-color: var(--main-background);
-  padding: 0.5em;
-  border-radius: 50%;
-  border: 1px solid black;
-}
-
-.attributes-caption:nth-of-type(2) {
-  left: unset;
-  right: -10em;
-}
-
 #substance-caption {
   font-size: 2em;
   position: absolute;
@@ -74,5 +29,78 @@
   padding: 0.75em 1.25em;
   border-radius: 50%;
   border: 1px solid black;
+}
+
+#attributes {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 0;
+  width: 0;
+  overflow: visible;
+
+  .attribute {
+    position: absolute;
+    top: 0.1em;
+    height: calc(50vh - 4em);
+    width: 0.5em;
+    transform-origin: top center;
+    background-color: black;
+  }
+  
+  @for $i from 1 through 4 {
+    .attribute:nth-of-type(#{$i}) {
+      transform: rotate(55deg);
+      left: 5.25em + (-2em * $i);
+    }
+    .attribute:nth-of-type(#{$i + 4}) {
+      transform: rotate(-55deg);
+      right: 5.25em + (-2em * $i);
+    }
+  }
+  
+  .attributes-caption {
+    font-size: 1.5em;
+    position: absolute;
+    top: 5.5em;
+    left: -10em;
+    background-color: var(--main-background);
+    padding: 0.5em;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  
+  .attributes-caption:nth-of-type(2) {
+    left: unset;
+    right: -10em;
+  }
+}
+
+#modes {
+  position: absolute;
+  left: 50%;
+  top: 25.5%;
+  height: 0;
+  width: 0;
+  overflow: visible;
+
+  .mode {
+    position: absolute;
+    top: 0;
+    height: calc(50vh - 4em);
+    width: 0.6em;
+    transform-origin: top center;
+    background-color: black;
+  }
+
+  @for $i from 1 through 4 {
+    .mode:nth-of-type(#{$i}) {
+      left: -30.05em + (2em * $i);
+    }
+    .mode:nth-of-type(#{$i + 4}) {
+      right: -30.05em + (2em * $i);
+    }
+  }
+  
 }
 

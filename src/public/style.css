@@ -16,7 +16,7 @@ html, body, #root {
 
 #left-panel {
     height: 100%;
-    width: 13em;
+    width: 13em; 
 }
 
 #route-content {
